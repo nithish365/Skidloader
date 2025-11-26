@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "com.unity.dt.app-ui": "2.1.2",
     "com.unity.feature.development": "1.0.2",
+    "com.unity.industrycse.productconfigurator": "file:C:/Users/nithi/Downloads/Industry-Product-Configurator-main/Industry-Product-Configurator-main",
     "com.unity.inputsystem": "1.14.2",
     "com.unity.learn.iet-framework": "5.0.2",
     "com.unity.multiplayer.center": "1.0.0",
