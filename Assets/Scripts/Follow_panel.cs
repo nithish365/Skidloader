@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 
 public class Follow_panel : MonoBehaviour
-  {
-
+{
     public Transform target;
-    public float smoothTime = 0.08f;   // Lower = faster, Higher = smoother
-    public float fixedZDistance = 0.6f;
+
+    [Header("Follow Settings")]
+    public float smoothTime = 0.1f;
+    public float fixedZDistance = 0.45f;
+
+    [Header("Vertical Offset")]
+    public float heightOffset = 0f;   // <--- PUBLIC Y OFFSET
 
     [Header("Panel Rotation")]
     public float rotationX = 0f;
@@ -20,19 +24,21 @@ public class Follow_panel : MonoBehaviour
 
     void LateUpdate()
     {
-        // 1️⃣ Forward direction without Y (no pitch)
+        // 1️⃣ Forward direction ignoring Y
         Vector3 camForward = target.forward;
         camForward.y = 0;
         camForward.Normalize();
 
-        // 2️⃣ Desired position
+        // 2️⃣ Target Position
         Vector3 targetPos = target.position + camForward * fixedZDistance;
-        targetPos.y = transform.position.y;  // lock height
 
-        // 3️⃣ SUPER SMOOTH follow (Shake removed)
+        // 3️⃣ Follow camera Y + offset
+        targetPos.y = target.position.y + heightOffset;  // follows up/down, adjustable
+
+        // 4️⃣ Smooth movement
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
 
-        // 4️⃣ Correct facing direction (no backside)
+        // 5️⃣ Rotation only on Y + your custom X
         Vector3 lookDirection = transform.position - target.position;
         lookDirection.y = 0;
 
@@ -41,9 +47,9 @@ public class Follow_panel : MonoBehaviour
             Quaternion yRotation = Quaternion.LookRotation(lookDirection);
 
             Quaternion finalRotation = Quaternion.Euler(
-                rotationX,                // public X
-                yRotation.eulerAngles.y, // Y follows camera
-                0f                       // no Z rotation
+                rotationX,
+                yRotation.eulerAngles.y,
+                0f
             );
 
             transform.rotation = Quaternion.Lerp(transform.rotation, finalRotation, 10f * Time.deltaTime);

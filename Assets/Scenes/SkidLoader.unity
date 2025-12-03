@@ -1233,7 +1233,7 @@ Transform:
   m_GameObject: {fileID: 839413588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.008312903, y: 0.16, z: -0.0057670097}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1254,9 +1254,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnityEngine.XR.Interaction.Toolkit.UI.Follow_panel
   target: {fileID: 7917674759129574808}
-  smoothTime: 0.08
-  fixedZDistance: 0.2
-  rotationX: 45
+  smoothTime: 0.1
+  fixedZDistance: 0.15
+  heightOffset: -1.1
+  rotationX: 30
 --- !u!1 &854060983
 GameObject:
   m_ObjectHideFlags: 0
@@ -36274,7 +36275,7 @@ Transform:
   m_GameObject: {fileID: 2814371906242633371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.00734, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -46575,7 +46576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &5608732804506675470
 MeshFilter:
   m_ObjectHideFlags: 0
