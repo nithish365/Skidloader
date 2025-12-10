@@ -2,40 +2,21 @@ using UnityEngine;
 
 public class Material_Controller : MonoBehaviour
 {
-
-    [Header("Color Objects (each object works like a button)")]
-    public GameObject[] colorButton;   // Previously buttons
-
-    [Header("Target Material (shared across multiple objects)")]
+    [Header("Target Material")]
     public Material targetMaterial;
 
-    [Header("Colors (match each object's order)")]
+    [Header("Colors (index-based)")]
     public Color[] colors;
 
-    void Start()
+    // XR Simple Interactable will call this and pass an index
+    public void ChangeColorByIndex(int index)
     {
-        if (targetMaterial == null || colorButton.Length == 0 || colors.Length == 0)
+        if (index < 0 || index >= colors.Length)
         {
-            Debug.LogError("Please assign the Material, Objects, and Colors!");
+            Debug.LogError("Index out of range!");
             return;
         }
 
-        if (colorButton.Length != colors.Length)
-        {
-            Debug.LogWarning("Number of objects and colors do not match!");
-        }
-    }
-
-    // This will be called when object is clicked/touched/triggered
-    public void ChangeColorByObject(GameObject clickedObject)
-    {
-        for (int i = 0; i < colorButton.Length; i++)
-        {
-            if (clickedObject == colorButton[i])
-            {
-                targetMaterial.color = colors[i];
-                break;
-            }
-        }
+        targetMaterial.color = colors[index];
     }
 }
